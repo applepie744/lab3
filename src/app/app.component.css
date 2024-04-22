@@ -1,0 +1,125 @@
+@charset "UTF-8";
+:host .line {
+  height: 20px;
+}
+:host .routingButton {
+  width: 47.5%;
+  margin-top: -2px;
+  margin-bottom: 0.8%;
+  background-color: #00C853;
+  margin-left: 1.8%;
+  box-shadow: 4px 4px 0 rgb(123, 123, 123);
+}
+:host .routingButtonTable {
+  width: 47.7%;
+  margin-top: -2px;
+  margin-bottom: 0.8%;
+  margin-left: 1%;
+  background-color: rgb(140, 140, 140);
+  box-shadow: 4px 4px 0 rgb(123, 123, 123);
+}
+:host .addBox {
+  float: left;
+  border: 3px solid rgb(140, 140, 140);
+  width: 350px;
+  height: 24%;
+  margin-left: 2%;
+  margin-top: -1.5px;
+}
+:host .addBox h4 {
+  width: 105px;
+  margin-top: -20px;
+  margin-left: 20px;
+  background: #424242;
+  font-size: 250%;
+  font-family: Cambria, Cochin, Georgia, Times, "Times New Roman", serif;
+  text-align: center;
+  color: rgb(225, 224, 224);
+}
+:host .addBox .addInput {
+  width: 95%;
+  margin-top: -1%;
+  margin-left: 2%;
+}
+:host .addBox .addButton {
+  margin-left: 42%;
+  margin-top: -5.5%;
+  box-shadow: 4px 4px 0 rgb(123, 123, 123);
+}
+:host .addSKill {
+  width: 330px;
+  height: 20%;
+  margin-left: 1.8%;
+}
+:host .addSKill fieldset {
+  width: 100.7%;
+  color: rgb(140, 140, 140);
+}
+:host .addSKill fieldset legend {
+  font-size: 150%;
+  font-family: Cambria, Cochin, Georgia, Times, "Times New Roman", serif;
+  color: rgb(225, 224, 224);
+}
+:host .addSKill button {
+  margin-top: -1.5%;
+  width: 10em; /* Ширина кнопки */
+  height: 3em;
+  width: 100%;
+  box-shadow: 4px 4px 0 rgb(123, 123, 123);
+}
+:host .addSKill .addInputSkill {
+  width: 95%;
+  margin-top: -1.75%;
+  margin-left: 2%;
+}
+:host .rightBox {
+  float: right; /* Положение справа */
+  width: 61%; /* Ширина */
+  height: 85%; /* Высота */
+  border: 3px rgb(225, 224, 224);
+  margin-right: 90px;
+  margin-top: -4px;
+}
+:host .rightBox .sortBox {
+  border: 3px solid rgb(140, 140, 140);
+  width: 107.8%;
+  height: 50%;
+}
+:host .rightBox .sortBox .row {
+  color: rgb(225, 224, 224);
+  font-size: 130%;
+  width: 100%;
+  margin-left: 2%;
+  margin-top: 1%;
+}
+:host .rightBox .sortBox .row .rowRightSide {
+  float: right;
+  margin-bottom: 7%;
+  margin-right: 9%;
+}
+:host .rightBox .sortBox .row .rowRightSide mat-form-field {
+  max-width: 59%;
+}
+:host .rightBox .sortBox .row mat-form-field {
+  max-width: 10%;
+}
+:host .rightBox .sortBox .row mat-form-field .miniNumInput {
+  margin-left: 1%;
+  margin-right: 3%;
+}
+:host .rightBox .sortBox .row2 {
+  color: rgb(225, 224, 224);
+  font-size: 130%;
+  width: 100%;
+  margin-left: 2%;
+  margin-top: 3%;
+}
+:host .rightBox .sortBox .row2 .rowRightSide {
+  float: right;
+  margin-top: -10.5%;
+  margin-right: -1.5%;
+}
+:host .rightBox .sortBox .row2 mat-form-field {
+  width: 25%;
+  margin-left: 1.5%;
+}/*# sourceMappingURL=app.component.css.map */

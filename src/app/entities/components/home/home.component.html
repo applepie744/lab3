@@ -1,0 +1,107 @@
+<p class="backButton"
+></p>
+<div class="addBox">
+  <h4>Create</h4>
+  <p>
+    <mat-progress-bar mode="indeterminate"></mat-progress-bar>
+  </p>
+  <form [formGroup]="addForm">
+    <mat-form-field class="addInput">
+      <input matInput formControlName="name">
+      <mat-label>
+        Имя
+      </mat-label>
+      <mat-error *ngIf=""></mat-error>
+    </mat-form-field>
+    <mat-form-field class="addInput">
+      <input matInput type="number" min="1" max="10" step="1" formControlName="power">
+      <mat-label>
+        Сила
+      </mat-label>
+    </mat-form-field>
+    <mat-form-field class="addInput">
+      <mat-label>Choose an option</mat-label>
+      <mat-select multiple formControlName="skills">
+        <mat-option *ngFor="let skill of skillList" [value]="skill">{{ skill }}</mat-option>
+      </mat-select>
+    </mat-form-field>
+    <mat-form-field class="addInput">
+      <input matInput type="number" min="1" max="10" step="1" formControlName="level">
+      <mat-label>
+        Уровень
+      </mat-label>
+    </mat-form-field>
+    <button mat-fab 
+            type="submit"
+            (click)="onSubmit()" 
+            [disabled]="!addForm.valid"
+            color="accent"
+            class="addButton">
+      <mat-icon>
+        add
+      </mat-icon>
+    </button>
+  </form>
+</div>
+
+<div class="rightBox">
+    <div class="sortBox">
+      <div class="row">
+        Уровень героя:    от:
+        <mat-form-field>
+          <input matInput type="number" min='1' max="10" step="1" class="miniNumInput">
+        </mat-form-field>
+         до:
+        <mat-form-field class="SelectCheckbox">
+          <input matInput type="number" min='1' max="10" step="1" class="miniNumInput">
+        </mat-form-field>
+        <div class="rowRightSide">Способности:
+        <mat-form-field>
+          <mat-label>Выберите...</mat-label>
+          <mat-select multiple>
+            <mat-option *ngFor="let skill of skillList" [value]="skill">{{ skill }}</mat-option>
+          </mat-select>
+        </mat-form-field>
+      </div>
+      </div>
+      <div class="row2">
+          Поиск по имени:
+          <mat-form-field>
+            <input matInput type="text" >
+            <button matSuffix mat-icon-button aria-label="Clear">
+              <mat-icon>close</mat-icon>
+            </button>
+          </mat-form-field>
+          <div class="rowRightSide">
+            Сортировка по уровню:
+            <mat-form-field class="addInput">
+              <mat-label>Choose an option</mat-label>
+              <mat-select value="option1">
+                <mat-option value="option1">по возрастанию</mat-option>
+                <mat-option value="option2">по убыванию</mat-option>
+              </mat-select>
+            </mat-form-field>
+          </div>
+      </div>
+    </div>
+    <div class="cardBox">
+      <cards></cards>
+    </div>
+</div>
+
+<div class="addSKill">
+  <form [formGroup]="addSkill">
+    <fieldset>
+      <legend>Add Skills</legend>
+      <p
+      ></p>
+  <mat-form-field class="addInputSkill">
+    <input matInput type="text" formControlName="skill">
+    <mat-label>
+      Добавить новую способность
+    </mat-label>
+  </mat-form-field>
+  <button mat-raised-button color="accent" (click)="onSubmitSkillList()">Добавить способность</button>
+</fieldset>
+</form>
+</div>

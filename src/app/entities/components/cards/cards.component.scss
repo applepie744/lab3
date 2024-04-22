@@ -1,0 +1,43 @@
+.deleteButton {
+    margin-left: 80%;
+    margin-top: -30px;
+}
+mat-icon {
+    margin-left: 90%;
+}
+mat-progress-bar {
+    width: 125%;
+    margin-left: -7%;
+}
+.example-action-buttons {
+    padding-bottom: 20px;
+  }
+
+.example-container {
+    overflow: auto;
+    max-height: 340.75px;
+    width: 108.5%;
+}
+
+mat-table {
+    width: 100%;
+    margin-top: 2%;
+    background-color: rgb(123, 123, 123);
+    mat-accordion {
+        width: 200%;
+        margin-top: -1.75%;
+        margin-left: -4%;
+        mat-expansion-panel {
+            width: 108.5%;
+            margin-top: 2%;
+            mat-panel-title {
+                    word-spacing: 10px;
+                span {
+                    font-size: 150%;
+                }
+            }
+        }
+    }
+}
+  
+

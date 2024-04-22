@@ -1,0 +1,39 @@
+<section class="example-container mat-elevation-z8" tabindex="0">
+    <mat-table [dataSource]="dataSource" class="mat-elevation-z8">
+      <ng-container matColumnDef="name">
+        <mat-header-cell mat-header-cell *matHeaderCellDef> Name </mat-header-cell>
+        <mat-cell mat-cell *matCellDef="let element">
+          <mat-accordion class="example-headers-align" multi>
+            <mat-expansion-panel>
+              <mat-expansion-panel-header>
+                <mat-panel-title>
+                    <p>
+                        Имя: <span>{{ element.name }} </span>
+                    </p>
+                </mat-panel-title>
+                <mat-panel-description>
+                  <mat-icon>videogame_asset</mat-icon>
+                </mat-panel-description>
+              </mat-expansion-panel-header>
+              <div>
+                <p>
+                    Сила: {{ element.power }}
+                </p>
+                <p>
+                    Способности: {{ element.skills }}
+                </p>
+                <p>
+                    Уровень: {{ element.level }}
+                </p>
+            </div>
+            <button mat-stroked-button class="deleteButton" (click)="delButton(element.id)">Удалить героя</button>
+            <mat-progress-bar mode="indeterminate"></mat-progress-bar>
+            </mat-expansion-panel>
+          </mat-accordion>
+        </mat-cell>
+      </ng-container>
+    
+      <!-- <mat-header-row *matHeaderRowDef="displayedColumns"></mat-header-row> -->
+      <mat-row matRipple *matRowDef="let row; columns: displayedColumns;"></mat-row>
+    </mat-table>    
+  </section>
