@@ -2,6 +2,7 @@ import { Component } from '@angular/core';
 import { FormBuilderService } from "../../service/form-builder.service";
 import { FormGroup } from '@angular/forms';
 import { CHARACTER_DATA, сharacter } from '../data-table/data-sourse';
+import { heroDataService } from '../../service/get-hero';
 
 
 
@@ -11,24 +12,24 @@ import { CHARACTER_DATA, сharacter } from '../data-table/data-sourse';
   styleUrls: ['./home.component.scss']
 })
 export class HomeComponent{
+
   skillList: string[] = ['Ловкость', 'Прыгучесть', 'Ночное зрение', 'Регенерация'];
   dataSource = CHARACTER_DATA;
   public addForm: FormGroup = this._fbService.addForm;
   public addSkill: FormGroup = this._fbService.addSkill;
 
-  constructor(private readonly _fbService: FormBuilderService) { }
 
+  constructor(private readonly _fbService: FormBuilderService, private readonly _hero: heroDataService) { }
+  displayedColumns = ['name'];
+  
   public onSubmit(): void {
-    if (this.addForm.valid){
-      var el: сharacter = {
-        id: Number(CHARACTER_DATA.length + 1),
-        name: this.addForm.value['name'],
-        power: this.addForm.value['power'],
-        skills: this.addForm.value['skills'],
-        level: this.addForm.value['level'],
-      };
-      this.dataSource.push(el);
+    const hero = this.addForm.getRawValue();
+    if (hero) {
+      const newHero = {id: (this.dataSource[this.dataSource.length - 1].id + 1), ...hero}
+      this.dataSource = [...this.dataSource, newHero];
+      this._hero.getHeroes()
     }
+    this.addForm.reset();
   };
 
   public onSubmitSkillList(): void {
@@ -36,5 +37,9 @@ export class HomeComponent{
       this.skillList.push(this.addSkill.value['skill']);
     }
   };
+
+  public delButton(id: number): void{
+    this.dataSource = this.dataSource.filter((element: сharacter) => element.id !== id);
+  }
 
 }

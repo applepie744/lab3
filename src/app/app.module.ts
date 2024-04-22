@@ -12,7 +12,6 @@ import { MatProgressBarModule } from '@angular/material/progress-bar';
 import { MatCardModule } from '@angular/material/card';
 import { MatDividerModule } from '@angular/material/divider';
 import { MatCheckboxModule } from '@angular/material/checkbox';
-import { CardsComponent } from './entities/components/cards/cards.component';
 import { MatExpansionModule } from '@angular/material/expansion';
 import { MatTableModule } from '@angular/material/table';
 import { RouterLink, RouterLinkActive, provideRouter, RouterOutlet } from '@angular/router';
@@ -24,7 +23,6 @@ import { FormControl, ReactiveFormsModule } from '@angular/forms';
 @NgModule({
   declarations: [
     AppComponent,
-    CardsComponent,
     DataTableComponent,
     HomeComponent,
   ],
