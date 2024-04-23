@@ -100,29 +100,29 @@
             mat-form-field {
                 width: 25%;
                 margin-left: 1.5%;
+                mat-icon {
+                    margin-left: 2%;
+                }
             }           
         }
     }
-    mat-table {
-        width: 100%;
-        margin-top: 2%;
-        background-color: rgb(123, 123, 123);
         mat-accordion {
+            margin-top: 2%;
+            background-color: rgb(123, 123, 123);
             width: 200%;
             margin-top: -1.75%;
             margin-left: -4%;
             mat-expansion-panel {
                 width: 108.5%;
-                margin-top: 2%;
-                mat-panel-title {
-                        word-spacing: 10px;
+                margin-top: -2%;
+                mat-panel-title {      
                     span {
                         font-size: 150%;
+                        word-spacing: 10px;
                     }
                 }
             }
         }
-    }
     mat-icon {
         margin-left: 90%;
     }
@@ -131,7 +131,7 @@
         margin-left: -7%;
     }
     .deleteButton {
-        margin-left: 78%;
+        margin-left: 81%;
         margin-top: -30px;
     }
     

@@ -10,13 +10,13 @@ import { HomeComponent } from '../home/home.component';
 })
 
 export class DataTableComponent {
-  constructor (private readonly _hero: heroDataService) {
+  constructor(private readonly _hero: heroDataService) {
   }
   public displayedColumns: string[] = ['id','name', 'power', 'skills', 'level','action'];
-  public dataSource =this._hero.getHeroes();
-
-  public delButton(id: number): void{
-    this.dataSource = this.dataSource.filter((element: сharacter) => element.id !== id);
+  public dataSource: сharacter[] = this._hero.getHeroes();
+  public removeRow(id: number): void {
+    this.dataSource = this.dataSource.filter((element: сharacter): boolean => element.id !== id);
+    this._hero.postHeroes(this.dataSource);
   }
 }
 

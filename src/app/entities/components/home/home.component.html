@@ -33,7 +33,7 @@
     </mat-form-field>
     <button mat-fab 
             type="submit"
-            (click)="onSubmit()" 
+            (click)="addHero()" 
             [disabled]="!addForm.valid"
             color="accent"
             class="addButton">
@@ -67,62 +67,67 @@
       <div class="row2">
           Поиск по имени:
           <mat-form-field>
-            <input matInput type="text" >
+            <input matInput type="text">
             <button matSuffix mat-icon-button aria-label="Clear">
-              <mat-icon>close</mat-icon>
             </button>
           </mat-form-field>
           <div class="rowRightSide">
             Сортировка по уровню:
             <mat-form-field class="addInput">
               <mat-label>Choose an option</mat-label>
-              <mat-select value="option1">
+              <mat-select value="option1" onchange="sort(value)">
                 <mat-option value="option1">по возрастанию</mat-option>
-                <mat-option value="option2">по убыванию</mat-option>
+                <mat-option value="option2" >по убыванию</mat-option>
               </mat-select>
             </mat-form-field>
           </div>
       </div>
     </div>
     <div class="cardBox">
-      <section class="example-container mat-elevation-z8" tabindex="0">
-        <mat-table [dataSource]="dataSource" class="mat-elevation-z8">
-          <ng-container matColumnDef="name">
-            <mat-header-cell mat-header-cell *matHeaderCellDef> Name </mat-header-cell>
-            <mat-cell mat-cell *matCellDef="let element">
-              <mat-accordion class="example-headers-align" multi>
-                <mat-expansion-panel>
-                  <mat-expansion-panel-header>
-                    <mat-panel-title>
-                        <p>
-                            Имя: <span>{{ element.name }} </span>
-                        </p>
-                    </mat-panel-title>
-                    <mat-panel-description>
-                      <mat-icon>videogame_asset</mat-icon>
-                    </mat-panel-description>
-                  </mat-expansion-panel-header>
-                  <div>
-                    <p>
-                        Сила: {{ element.power }}
-                    </p>
-                    <p>
-                        Способности: {{ element.skills }}
-                    </p>
-                    <p>
-                        Уровень: {{ element.level }}
-                    </p>
+      <section>
+        <mat-accordion class="example-headers-align" *ngFor="let item of heroData">
+          <mat-expansion-panel class="expansion-panel">
+            <mat-expansion-panel-header>
+              <mat-panel-title> Имя:  
+                  <span>
+                    {{ item.name }}
+                  </span> 
+              </mat-panel-title>
+              <mat-panel-description>
+                <mat-icon>
+                  videogame_asset
+                </mat-icon>
+              </mat-panel-description>
+            </mat-expansion-panel-header>
+            <div>
+              <p>
+                Сила: {{ item.power }}
+              </p>
+              <p>
+                Способности: {{ item.skills }}
+              </p>
+              <p>
+                Уроверь: {{ item.level }}
+              </p>
+            </div>
+            <div (click)="removeHero(item.id)"
+                 class="example-button-row">
+              <div class="example-flex-container">
+                <div class="example-button-container">
+                  <div class = "delhero">
+                  <button color="warn"
+                          mat-stroked-button
+                          class="deleteButton">
+                    Удалить героя
+                  </button>
+                  <mat-progress-bar mode="indeterminate"
+                  ></mat-progress-bar>
+                  </div>
                 </div>
-                <button mat-stroked-button class="deleteButton" (click)="delButton(element.id)">Удалить героя</button>
-                <mat-progress-bar mode="indeterminate"></mat-progress-bar>
-                </mat-expansion-panel>
-              </mat-accordion>
-            </mat-cell>
-          </ng-container>
-        
-          <!-- <mat-header-row *matHeaderRowDef="displayedColumns"></mat-header-row> -->
-          <mat-row matRipple *matRowDef="let row; columns: displayedColumns;"></mat-row>
-        </mat-table>    
+              </div>
+            </div>
+          </mat-expansion-panel>
+        </mat-accordion>
       </section>
     </div>
 </div>

@@ -3,7 +3,8 @@ import { FormBuilderService } from "../../service/form-builder.service";
 import { FormGroup } from '@angular/forms';
 import { CHARACTER_DATA, сharacter } from '../data-table/data-sourse';
 import { heroDataService } from '../../service/get-hero';
-
+import { DataTableComponent } from '../data-table/data-table.component';
+import {NgIf} from '@angular/common';
 
 
 @Component({
@@ -14,20 +15,23 @@ import { heroDataService } from '../../service/get-hero';
 export class HomeComponent{
 
   skillList: string[] = ['Ловкость', 'Прыгучесть', 'Ночное зрение', 'Регенерация'];
-  dataSource = CHARACTER_DATA;
   public addForm: FormGroup = this._fbService.addForm;
   public addSkill: FormGroup = this._fbService.addSkill;
 
+  constructor(
+    private readonly _fbService: FormBuilderService,
+    private readonly _heroesData: heroDataService,
+  ) {
+  }
 
-  constructor(private readonly _fbService: FormBuilderService, private readonly _hero: heroDataService) { }
+  public heroData: сharacter[] = this._heroesData.getHeroes();
   displayedColumns = ['name'];
-  
-  public onSubmit(): void {
+
+  public addHero(): void {
     const hero = this.addForm.getRawValue();
     if (hero) {
-      const newHero = {id: (this.dataSource[this.dataSource.length - 1].id + 1), ...hero}
-      this.dataSource = [...this.dataSource, newHero];
-      this._hero.getHeroes()
+      const newHero = {id: (this.heroData[this.heroData.length - 1].id + 1), ...hero}
+      this.heroData.push(newHero);
     }
     this.addForm.reset();
   };
@@ -36,10 +40,12 @@ export class HomeComponent{
     if (this.addSkill.valid){
       this.skillList.push(this.addSkill.value['skill']);
     }
+    this.addSkill.reset();
   };
 
-  public delButton(id: number): void{
-    this.dataSource = this.dataSource.filter((element: сharacter) => element.id !== id);
+  public removeHero(id: number): void {
+    this.heroData = this.heroData.filter((element: сharacter): boolean => element.id !== id);
+    this._heroesData.postHeroes(this.heroData);
   }
-
 }
+
