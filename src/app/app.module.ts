@@ -18,13 +18,16 @@ import { RouterLink, RouterLinkActive, provideRouter, RouterOutlet } from '@angu
 import { DataTableComponent } from './entities/components/data-table/data-table.component';
 import { routes } from './app-routing.module';
 import { HomeComponent } from './entities/components/home/home.component';
-import { FormControl, ReactiveFormsModule } from '@angular/forms';
+import { ReactiveFormsModule } from '@angular/forms';
+import { NgIf } from '@angular/common';
+import { FilterPipe } from './entities/pipes/filter.pipe';
 
 @NgModule({
   declarations: [
     AppComponent,
     DataTableComponent,
     HomeComponent,
+    FilterPipe
   ],
   imports: [
     BrowserModule,
@@ -45,6 +48,8 @@ import { FormControl, ReactiveFormsModule } from '@angular/forms';
     RouterLinkActive,
     RouterOutlet,
     ReactiveFormsModule,
+    NgIf,
+    
   ],
   providers: [
     provideRouter(routes),

@@ -67,17 +67,15 @@
       <div class="row2">
           Поиск по имени:
           <mat-form-field>
-            <input matInput type="text">
-            <button matSuffix mat-icon-button aria-label="Clear">
-            </button>
+            <input matInput type="search">
           </mat-form-field>
           <div class="rowRightSide">
             Сортировка по уровню:
             <mat-form-field class="addInput">
               <mat-label>Choose an option</mat-label>
-              <mat-select value="option1" onchange="sort(value)">
-                <mat-option value="option1">по возрастанию</mat-option>
-                <mat-option value="option2" >по убыванию</mat-option>
+              <mat-select>
+                <mat-option (click)="sortLevel('option1')" value="option1" >по возрастанию</mat-option>
+                <mat-option (click)="sortLevel('option2')" value="option2" >по убыванию</mat-option>
               </mat-select>
             </mat-form-field>
           </div>
@@ -85,32 +83,35 @@
     </div>
     <div class="cardBox">
       <section>
-        <mat-accordion class="example-headers-align" *ngFor="let item of heroData">
+        <mat-accordion class="example-headers-align" *ngFor="let element of dataSource">
           <mat-expansion-panel class="expansion-panel">
             <mat-expansion-panel-header>
-              <mat-panel-title> Имя:  
+              <mat-panel-title>
+                <mat-icon>
+                  verified_user
+                </mat-icon>
                   <span>
-                    {{ item.name }}
+                    {{ element.name | uppercase}}
                   </span> 
               </mat-panel-title>
               <mat-panel-description>
-                <mat-icon>
+                <mat-icon class="specIcon">
                   videogame_asset
                 </mat-icon>
               </mat-panel-description>
             </mat-expansion-panel-header>
             <div>
               <p>
-                Сила: {{ item.power }}
+                Сила: {{ element.power }}
               </p>
               <p>
-                Способности: {{ item.skills }}
+                Способности: {{ element.skills }}
               </p>
               <p>
-                Уроверь: {{ item.level }}
+                Уровень: {{ element.level }}
               </p>
             </div>
-            <div (click)="removeHero(item.id)"
+            <div (click)="removeHero(element.id)"
                  class="example-button-row">
               <div class="example-flex-container">
                 <div class="example-button-container">

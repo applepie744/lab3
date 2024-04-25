@@ -17,21 +17,21 @@ export class HomeComponent{
   skillList: string[] = ['Ловкость', 'Прыгучесть', 'Ночное зрение', 'Регенерация'];
   public addForm: FormGroup = this._fbService.addForm;
   public addSkill: FormGroup = this._fbService.addSkill;
-
+  
   constructor(
     private readonly _fbService: FormBuilderService,
     private readonly _heroesData: heroDataService,
   ) {
   }
 
-  public heroData: сharacter[] = this._heroesData.getHeroes();
+  public dataSource: сharacter[] = this._heroesData.getHeroes();
   displayedColumns = ['name'];
 
   public addHero(): void {
     const hero = this.addForm.getRawValue();
     if (hero) {
-      const newHero = {id: (this.heroData[this.heroData.length - 1].id + 1), ...hero}
-      this.heroData.push(newHero);
+      const newHero = {id: this.dataSource.length + 1, ...hero}
+      this.dataSource.push(newHero);
     }
     this.addForm.reset();
   };
@@ -44,8 +44,17 @@ export class HomeComponent{
   };
 
   public removeHero(id: number): void {
-    this.heroData = this.heroData.filter((element: сharacter): boolean => element.id !== id);
-    this._heroesData.postHeroes(this.heroData);
+    this.dataSource = this.dataSource.filter((element: сharacter): boolean => element.id !== id);
+    this._heroesData.postHeroes(this.dataSource);
+  }
+
+  public sortLevel(value: string): void {
+    if (value == 'option1'){
+      this.dataSource = this.dataSource.slice().sort((a: сharacter, b: сharacter) => a.level - b.level);
+    }else {
+      this.dataSource = this.dataSource.slice().sort((a: сharacter, b: сharacter) => b.level - a.level);
+    }
   }
 }
+
 
