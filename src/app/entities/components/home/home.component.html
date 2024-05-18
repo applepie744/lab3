@@ -11,7 +11,6 @@
       <mat-label>
         Имя
       </mat-label>
-      <mat-error *ngIf=""></mat-error>
     </mat-form-field>
     <mat-form-field class="addInput">
       <input matInput type="number" min="1" max="10" step="1" formControlName="power">
@@ -49,25 +48,28 @@
       <div class="row">
         Уровень героя:    от:
         <mat-form-field>
-          <input matInput type="number" min='1' max="10" step="1" class="miniNumInput">
+          <input matInput [(ngModel)]="startLevelNumber" type="number" min='1' max="10" step="1" class="miniNumInput">
         </mat-form-field>
          до:
         <mat-form-field class="SelectCheckbox">
-          <input matInput type="number" min='1' max="10" step="1" class="miniNumInput">
+          <input matInput [(ngModel)]="endLevelNumber" type="number" min='1' max="10" step="1" class="miniNumInput">
         </mat-form-field>
         <div class="rowRightSide">Способности:
         <mat-form-field>
           <mat-label>Выберите...</mat-label>
-          <mat-select multiple>
+          <mat-select multiple [(ngModel)]="valueSkill">
             <mat-option *ngFor="let skill of skillList" [value]="skill">{{ skill }}</mat-option>
-          </mat-select>
+          </mat-select> 
         </mat-form-field>
       </div>
       </div>
       <div class="row2">
           Поиск по имени:
           <mat-form-field>
-            <input matInput type="search">
+            <input [(ngModel)]="searchText"
+               type="search"
+               (click)="searchText=''"
+               matInput>
           </mat-form-field>
           <div class="rowRightSide">
             Сортировка по уровню:
@@ -83,7 +85,7 @@
     </div>
     <div class="cardBox">
       <section>
-        <mat-accordion class="example-headers-align" *ngFor="let element of dataSource">
+        <mat-accordion class="example-headers-align" *ngFor="let element of (dataSource | nameFilter: searchText | skillFilter: valueSkill | lvlStart: startLevelNumber | lvlEnd: endLevelNumber)">
           <mat-expansion-panel class="expansion-panel">
             <mat-expansion-panel-header>
               <mat-panel-title>

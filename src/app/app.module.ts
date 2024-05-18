@@ -20,14 +20,23 @@ import { routes } from './app-routing.module';
 import { HomeComponent } from './entities/components/home/home.component';
 import { ReactiveFormsModule } from '@angular/forms';
 import { NgIf } from '@angular/common';
-import { FilterPipe } from './entities/pipes/filter.pipe';
+import { FormsModule } from '@angular/forms';
+import { NameFilterPipe } from './entities/pipes/name-filter/name-filter.pipe';
+import { SkillFilterPipe } from './entities/pipes/skill-filter/skill-filter.pipe';
+import { LvlStartPipe } from './entities/pipes/level-filter/lvl-start/lvl-start.pipe';
+import { LvlEndPipe } from './entities/pipes/level-filter/lvl-end/lvl-end.pipe';
+
+
 
 @NgModule({
   declarations: [
     AppComponent,
     DataTableComponent,
     HomeComponent,
-    FilterPipe
+    NameFilterPipe,
+    SkillFilterPipe,
+    LvlStartPipe,
+    LvlEndPipe,
   ],
   imports: [
     BrowserModule,
@@ -49,7 +58,7 @@ import { FilterPipe } from './entities/pipes/filter.pipe';
     RouterOutlet,
     ReactiveFormsModule,
     NgIf,
-    
+    FormsModule,
   ],
   providers: [
     provideRouter(routes),

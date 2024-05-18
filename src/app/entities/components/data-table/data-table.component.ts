@@ -1,7 +1,7 @@
 import { Component } from '@angular/core';
-import { CHARACTER_DATA, сharacter } from './data-sourse';
+import { сharacter } from './data-sourse';
 import { heroDataService } from '../../service/get-hero';
-import { HomeComponent } from '../home/home.component';
+
 
 @Component({
   selector: 'app-data-table',

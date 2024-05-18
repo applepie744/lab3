@@ -1,10 +1,9 @@
 import { Component } from '@angular/core';
 import { FormBuilderService } from "../../service/form-builder.service";
 import { FormGroup } from '@angular/forms';
-import { CHARACTER_DATA, сharacter } from '../data-table/data-sourse';
+import { сharacter } from '../data-table/data-sourse';
 import { heroDataService } from '../../service/get-hero';
-import { DataTableComponent } from '../data-table/data-table.component';
-import {NgIf} from '@angular/common';
+
 
 
 @Component({
@@ -17,15 +16,19 @@ export class HomeComponent{
   skillList: string[] = ['Ловкость', 'Прыгучесть', 'Ночное зрение', 'Регенерация'];
   public addForm: FormGroup = this._fbService.addForm;
   public addSkill: FormGroup = this._fbService.addSkill;
-  
+  public dataSource: сharacter[] = this._heroesData.getHeroes();
+  public displayedColumns = ['name'];
+  public searchText="";
+  public valueSkill=[];
+  public startLevelNumber = 1;
+  public endLevelNumber = 10;
+  // public strIcon = 'verified_user'
+
   constructor(
     private readonly _fbService: FormBuilderService,
     private readonly _heroesData: heroDataService,
   ) {
   }
-
-  public dataSource: сharacter[] = this._heroesData.getHeroes();
-  displayedColumns = ['name'];
 
   public addHero(): void {
     const hero = this.addForm.getRawValue();
@@ -55,6 +58,19 @@ export class HomeComponent{
       this.dataSource = this.dataSource.slice().sort((a: сharacter, b: сharacter) => b.level - a.level);
     }
   }
-}
+  
+  // public changeIcon(level: number): string {
+  //     if (level<3){
+  //       this.strIcon = 'child_friendly'
+  //     }
+  //     else if (level>9)
+  //     {
+  //       this.strIcon = 'edit'
+  //     }
+  //     return this.strIcon
+  //   }
+    
+  }
+
 
 
