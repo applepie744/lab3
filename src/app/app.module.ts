@@ -25,8 +25,7 @@ import { NameFilterPipe } from './entities/pipes/name-filter/name-filter.pipe';
 import { SkillFilterPipe } from './entities/pipes/skill-filter/skill-filter.pipe';
 import { LvlStartPipe } from './entities/pipes/level-filter/lvl-start/lvl-start.pipe';
 import { LvlEndPipe } from './entities/pipes/level-filter/lvl-end/lvl-end.pipe';
-
-
+import { MatSnackBar, MatSnackBarModule } from '@angular/material/snack-bar';
 
 @NgModule({
   declarations: [
@@ -59,6 +58,7 @@ import { LvlEndPipe } from './entities/pipes/level-filter/lvl-end/lvl-end.pipe';
     ReactiveFormsModule,
     NgIf,
     FormsModule,
+    MatSnackBarModule 
   ],
   providers: [
     provideRouter(routes),

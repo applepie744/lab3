@@ -11,7 +11,7 @@ export class FormBuilderService {
 
   constructor (private readonly _fb: FormBuilder){
     this.addForm = new FormGroup({
-      name: this._fb.control('',[Validators.required, Validators.pattern('[a-zA-Z ]*')]),
+      name: this._fb.control('',[Validators.required, Validators.pattern('[a-zA-Z-А-Я-а-я ]*')]),
       power: this._fb.control('',[Validators.required, Validators.pattern(/^-?(0|[1-9]\d*)?$/),Validators.max(10),Validators.min(1)]),
       skills: this._fb.control('',[Validators.required]),
       level: this._fb.control('',[Validators.required,Validators.pattern(/^-?(0|[1-9]\d*)?$/),Validators.max(10),Validators.min(1)]),

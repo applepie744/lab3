@@ -1,15 +1,15 @@
-import { Component } from '@angular/core';
+import { Component} from '@angular/core';
 import { FormBuilderService } from "../../service/form-builder.service";
 import { FormGroup } from '@angular/forms';
 import { сharacter } from '../data-table/data-sourse';
 import { heroDataService } from '../../service/get-hero';
-
-
+import { FormControl } from '@angular/forms';
+import { MatSnackBar } from '@angular/material/snack-bar';
 
 @Component({
   selector: 'app-home',
   templateUrl: './home.component.html',
-  styleUrls: ['./home.component.scss']
+  styleUrls: ['./home.component.scss'],
 })
 export class HomeComponent{
 
@@ -20,13 +20,15 @@ export class HomeComponent{
   public displayedColumns = ['name'];
   public searchText="";
   public valueSkill=[];
-  public startLevelNumber = 1;
-  public endLevelNumber = 10;
-  // public strIcon = 'verified_user'
+  public startLevelNumber = '';
+  public endLevelNumber = '';
+  public strIcon = 'verified_user';
+  public selectedIndex: number | undefined; 
 
   constructor(
     private readonly _fbService: FormBuilderService,
     private readonly _heroesData: heroDataService,
+    private readonly _message: MatSnackBar,
   ) {
   }
 
@@ -36,14 +38,14 @@ export class HomeComponent{
       const newHero = {id: this.dataSource.length + 1, ...hero}
       this.dataSource.push(newHero);
     }
-    this.addForm.reset();
+    this.addFormReset();
   };
 
   public onSubmitSkillList(): void {
     if (this.addSkill.valid){
       this.skillList.push(this.addSkill.value['skill']);
     }
-    this.addSkill.reset();
+    this.addSkillReset();
   };
 
   public removeHero(id: number): void {
@@ -58,19 +60,48 @@ export class HomeComponent{
       this.dataSource = this.dataSource.slice().sort((a: сharacter, b: сharacter) => b.level - a.level);
     }
   }
+
+  errorMessage(formControler: string): string {
+    const form: FormControl = (this.addForm.get(formControler) as FormControl);
+    return form.hasError('required') ?
+      'Заполните обязательное поле' :
+      form.hasError('pattern') ?
+      'Некорректные данные' :
+      form.hasError('max') || form.hasError('min')?
+      'Выберите доступное значение: от 1 до 10':'';
+ }
+
+ errorMessageSkill(formControler: string): string {
+  const form: FormControl = (this.addSkill.get(formControler) as FormControl);
+  return form.hasError('required') ?
+    'Заполните обязательное поле' : '';
+}
   
-  // public changeIcon(level: number): string {
-  //     if (level<3){
-  //       this.strIcon = 'child_friendly'
-  //     }
-  //     else if (level>9)
-  //     {
-  //       this.strIcon = 'edit'
-  //     }
-  //     return this.strIcon
-  //   }
-    
+  public changeIcon(level: number): string {
+    if (level===10){
+      return 'star'
+    }
+    return 'filter_'+level
   }
 
-
+  public addFormReset(): void {
+    this.addForm.reset();
+    this._message.open('Герой успешно добавлен', 'ОК', {
+      horizontalPosition: 'right',
+      verticalPosition: 'bottom',
+      duration: 2500
+    });
+  }
+  public addSkillReset(): void {
+    this.addSkill.reset();
+    this._message.open('Способность доступна для выбора', 'ОК', {
+      horizontalPosition: 'right',
+      verticalPosition: 'bottom',
+      duration: 2500,
+    });
+  }
+  expansionPanelIndex(index: number) { // Step 2
+    this.selectedIndex = index;
+  }
+}
 

@@ -4,10 +4,11 @@ import { сharacter } from 'src/app/entities/components/data-table/data-sourse';
   name: 'lvlEnd'
 })
 export class LvlEndPipe implements PipeTransform {
-  transform(DATA: сharacter[], endNumber: number): any {
-    if (DATA && endNumber>0){
+  transform(DATA: сharacter[], endNumber: string): any {
+    let num = Number(endNumber)
+    if (DATA && num>0){
       return DATA.filter((hero: any) => {
-        return hero.level <= endNumber;
+        return hero.level <= num;
       });
     }
     else {
