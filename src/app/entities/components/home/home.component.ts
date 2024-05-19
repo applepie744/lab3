@@ -70,13 +70,13 @@ export class HomeComponent{
       'Некорректные данные' :
       form.hasError('max') || form.hasError('min')?
       'Выберите доступное значение: от 1 до 10':'';
- }
+  }
 
- errorMessageSkill(formControler: string): string {
-  const form: FormControl = (this.addSkill.get(formControler) as FormControl);
-  return form.hasError('required') ?
-    'Заполните обязательное поле' : '';
-}
+  errorMessageSkill(formControler: string): string {
+    const form: FormControl = (this.addSkill.get(formControler) as FormControl);
+    return form.hasError('required') ?
+      'Заполните обязательное поле' : '';
+  }
   
   public changeIcon(level: number): string {
     if (level===10){
@@ -105,4 +105,3 @@ export class HomeComponent{
     this.selectedIndex = index;
   }
 }
-
