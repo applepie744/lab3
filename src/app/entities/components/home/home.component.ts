@@ -34,6 +34,7 @@ export class HomeComponent{
 
   public addHero(): void {
     const hero = this.addForm.getRawValue();
+    hero['name'] = hero['name'].charAt(0).toUpperCase()+hero['name'].slice(1).toLowerCase();
     if (hero) {
       const newHero = {id: this.dataSource.length + 1, ...hero}
       this.dataSource.push(newHero);
