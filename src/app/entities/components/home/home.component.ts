@@ -1,4 +1,4 @@
-import { Component} from '@angular/core';
+import { Component } from '@angular/core';
 import { FormBuilderService } from "../../service/form-builder.service";
 import { FormGroup } from '@angular/forms';
 import { сharacter } from '../data-table/data-sourse';
@@ -12,8 +12,7 @@ import { MatSnackBar } from '@angular/material/snack-bar';
   styleUrls: ['./home.component.scss'],
 })
 export class HomeComponent{
-
-  skillList: string[] = ['Ловкость', 'Прыгучесть', 'Ночное зрение', 'Регенерация'];
+  public skillList: string[] = ['Ловкость', 'Прыгучесть', 'Ночное зрение', 'Регенерация'];
   public addForm: FormGroup = this._fbService.addForm;
   public addSkill: FormGroup = this._fbService.addSkill;
   public dataSource: сharacter[] = this._heroesData.getHeroes();
@@ -23,7 +22,7 @@ export class HomeComponent{
   public startLevelNumber = '';
   public endLevelNumber = '';
   public strIcon = 'verified_user';
-  public selectedIndex: number | undefined; 
+  public selectedIndex: number | undefined;
 
   constructor(
     private readonly _fbService: FormBuilderService,
@@ -40,14 +39,14 @@ export class HomeComponent{
       this.dataSource.push(newHero);
     }
     this.addFormReset();
-  };
+  }
 
   public onSubmitSkillList(): void {
     if (this.addSkill.valid){
       this.skillList.push(this.addSkill.value['skill']);
     }
     this.addSkillReset();
-  };
+  }
 
   public removeHero(id: number): void {
     this.dataSource = this.dataSource.filter((element: сharacter): boolean => element.id !== id);
@@ -62,7 +61,7 @@ export class HomeComponent{
     }
   }
 
-  errorMessage(formControler: string): string {
+  public errorMessage(formControler: string): string {
     const form: FormControl = (this.addForm.get(formControler) as FormControl);
     return form.hasError('required') ?
       'Заполните обязательное поле' :
@@ -72,7 +71,7 @@ export class HomeComponent{
       'Выберите доступное значение: от 1 до 10':'';
   }
 
-  errorMessageSkill(formControler: string): string {
+  public errorMessageSkill(formControler: string): string {
     const form: FormControl = (this.addSkill.get(formControler) as FormControl);
     return form.hasError('required') ?
       'Заполните обязательное поле' : '';
@@ -93,6 +92,7 @@ export class HomeComponent{
       duration: 2500
     });
   }
+
   public addSkillReset(): void {
     this.addSkill.reset();
     this._message.open('Способность доступна для выбора', 'ОК', {
@@ -101,7 +101,8 @@ export class HomeComponent{
       duration: 2500,
     });
   }
-  expansionPanelIndex(index: number) { // Step 2
+
+  public expansionPanelIndex(index: number) { 
     this.selectedIndex = index;
   }
 }

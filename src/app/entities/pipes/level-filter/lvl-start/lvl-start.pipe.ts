@@ -5,7 +5,6 @@ import { сharacter } from 'src/app/entities/components/data-table/data-sourse';
   name: 'lvlStart'
 })
 export class LvlStartPipe implements PipeTransform {
-
   transform(DATA: сharacter[], startNumber: string): any {
     let num = Number(startNumber);
     if (DATA && num>0){

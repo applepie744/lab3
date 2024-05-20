@@ -1,18 +1,21 @@
 <div>
-  <button mat-raised-button routerLink="/page1" routerLinkActive="activebutton"
+  <button routerLink="/page1" 
+          routerLinkActive="activebutton" 
+          mat-raised-button
           class="routingButton">
     <mat-icon>
       home
     </mat-icon>
-
     На главную
   </button>
-  <button mat-raised-button routerLink="/page2" routerLinkActive="activebutton"
+  <button routerLink="/page2" 
+          routerLinkActive="activebutton"
+          mat-raised-button
           class="routingButtonTable">
     <mat-icon>
       menu
     </mat-icon>
-      Таблица
+    Таблица
   </button>
 </div>
 <router-outlet></router-outlet>
